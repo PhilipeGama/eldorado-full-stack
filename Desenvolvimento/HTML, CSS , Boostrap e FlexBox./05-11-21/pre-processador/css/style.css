@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+}
+.container .item {
+  margin: 0 10px;
+}
+.container .item h1 {
+  font-size: 40px;
+  color: #333;
+}
+.container .item img {
+  border: 1px solid #ccc;
+  padding: 2px;
+}
+.container .item p {
+  color: #333;
+}
+
+/*# sourceMappingURL=style.css.map */

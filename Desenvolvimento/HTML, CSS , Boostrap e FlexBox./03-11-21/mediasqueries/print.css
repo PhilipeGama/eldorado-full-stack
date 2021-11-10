@@ -1,0 +1,43 @@
+.container {
+    width: 100vw;
+}
+
+.container > header, footer {
+    text-align: center;
+    background: none;
+    height: auto;
+}
+
+aside, .circle {
+    display: none;
+}
+
+main, footer {
+    width: 100vw;
+    background: none;
+}
+
+main h2 {
+    margin-top: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 5rem;
+}
+
+main p {
+    line-height: 30px;
+    text-align: justify;
+    text-indent: 30px;
+}
+
+main p::first-letter{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3rem;
+}
+
+@media print and (orientation: landscape) {
+    .circle {
+        display: block;
+        border: 2px solid black;
+    }
+}

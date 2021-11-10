@@ -1,0 +1,55 @@
+* {margin:0;padding: 0;box-sizing: border-box;}
+        
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none
+}
+
+.container {
+    width: 90vw;
+    margin: auto;
+}
+
+.container > header {
+    height: 16vh;
+    background-color: rosybrown;
+}
+
+aside {
+    width: 13vw;
+    float: left;
+    background-color: royalblue;
+    height: 50vh;
+}
+
+main {
+    width: 77vw;
+    float: left;
+    background-color:salmon;
+    height: 50vh;
+}
+
+footer {
+    clear: both;
+    width: 90vw;
+    background-color: seagreen;
+    height: 10vh;
+}
+
+.circle {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 100%;
+    background-color: red;
+}

@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+h2 {
+    color: #8f6161;
+    text-align: center;
+    font-size: 50px;
+    margin: 20px 50px;
+    padding: 20px 40px 50px 30px;
+}
+
+.nome-candidato {
+    font-size: 80px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+
+
+

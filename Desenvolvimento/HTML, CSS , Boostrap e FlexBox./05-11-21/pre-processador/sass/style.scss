@@ -1,0 +1,23 @@
+@use 'reset.scss';
+
+$cor_base: #333;
+$cor_secundaria: #ccc;
+$largura_menu: 10vw;
+
+.container {
+    display: flex;
+    .item {
+        margin: 0 10px;
+        h1 {
+            font-size: 40px;
+            color:$cor_base;
+        }
+        img {
+            border: 1px solid $cor_secundaria;
+            padding: 2px;
+        }
+        p {
+            color: $cor_base
+        }
+    }
+}
