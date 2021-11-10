@@ -1,0 +1,23 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Celular",
+      "preco": 1499,
+      "foto": "https://a-static.mlcdn.com.br/618x463/celular-samsung-galaxy-a01-32gb-a015/valdarmoveis/1550/a853959983610a7866185522b27629d7.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Notebook",
+      "preco": 4499.99,
+      "foto": "https://a-static.mlcdn.com.br/618x463/notebook-lenovo-ideapad3i-82bs0005br-intel-core-i5-8gb-256gb-ssd-156-lcd-windows-10/magazineluiza/135302600/8b52aec49b6fdba92b00e8c76bf3951d.jpg"
+    }
+  ],
+  "avaliacoes": [
+    {
+      "id": 1,
+      "produto_id": 2,
+      "comentario": "Produto bacana!"
+    }
+  ]
+}
