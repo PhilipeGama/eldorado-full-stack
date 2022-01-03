@@ -1,0 +1,15 @@
+Exercicios - Semana 2
+
+    1) Sua empresa está interessada em migrar a hospedagem do seu site para AWS, a empresa sabendo que você tem conhecimento sobre a cloud da AWS, solicita uma POC de hospedagem no S3, seguindo os seguintes critérios:
+        a) Versionamento no bucket habilitado
+        b) Acesso público ao site
+
+    2) O time de desenvolvimento da sua empresa solicitou a criação de dois ambientes no elastic beanstalk, sendo um para desenvolvimento e outro para produção. Crie esses ambientes seguindo os seguintes critérios:
+        a) O ambiente de desenvolvimento deve ter uma estratégia rápida de deploy e é totalmente compreensível o ambiente ficar indisponível durante esse processo.
+        b) O ambiente de produção, deve ser de alta disponibilidade, no momento do deploy da nova versão esse ambiente não deve ficar indisponível, porém não é aceitável um custo muito elevado	
+
+    3) O time de infra de sua empresa, tem a necessidade de dar mais autonomia aos devs durante o provisionamento de recursos, com esta finalidade foi solicitado a você a criação de stacks no cloudformation, sendo assim você deve:
+        a) Criar uma stack para criação de security groups, onde o usuário deverá informar o nome, o protocolo, as portas e o IP para aquele SG.
+        b) Criar uma stack para criação de instância EC2, onde o usuário deverá informar o KeyPair, selecionar o security group dentro dos securitys groups já criados no ambiente (item a), só será permitida a criação de tipo instâncias e amis disponível no free tier, dentro das seguintes regions: sa-east-1, us-east-1 e us-weast-1, opcionalmente o usuário pode adicionar um UserData no momento da criação, e deverá ter como output o IP público da instância gerada
+        c) Criar uma stack para disponibilização de RDS, utilizando tipo de instância e engine de banco disponível no free tier, o usuário deverá informar o nome do banco, usuário, senha e o security group criado no ambiente (item a).
+        d) Criar uma stack para criação de um bucket S3 onde o usuário indicará se esse bucket é para hospedagem de web sites ou não e se deseja ter o versionamento e o nome do bucket. O output será o nome do bucket.

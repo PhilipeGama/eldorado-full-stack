@@ -1,0 +1,4 @@
+PyMySQL
+wheel
+werkzeug
+flask

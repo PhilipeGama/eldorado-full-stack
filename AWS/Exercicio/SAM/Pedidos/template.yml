@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Dominio pedidos
+
+Globals:
+  Api:
+    OpenApiVersion: 3.0.1
+  Function:
+    Timeout: 3
+    Runtime: python3.9
+    MemorySize: 128
+
+Resources:
+  PedidoApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: PedidosApiGateway
+      StageName: dev
+      EndpointConfiguration:
+        Type: REGIONAL
+
+  PedidoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: LambdaCrudPedidos
+      Environment:
+        Variables:
+          Region: us-east-1
+          PedidoTable: Pedidos
+      CodeUri: src/
+      Handler: lambda_function.lambda_handler
+      Tracing: Active
+      Policies:
+        - AmazonDynamoDBFullAccess
+      Events:
+        PedidoApi:
+          Type: Api
+          Properties:
+            Path: /pedido
+            Method: post
+            RestApiId: !Ref PedidoApiGateway
+  
+  PedidoDynamoDb:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Pedidos
+      AttributeDefinitions:
+        - AttributeName: IdPedido
+          AttributeType: S
+      KeySchema:
+        - AttributeName: IdPedido
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      ProvisionedThroughput:
+        ReadCapacityUnits: 0
+        WriteCapacityUnits: 0
+ 
+Outputs:
+  PedidosApi:
+    Description: "API Gateway para o dominio de pedidos"
+    Value: !Sub "https://${PedidoApiGateway}.execute-api.${AWS::Region}.amazonaws.com"
+  LambdaPedidos:
+    Description: "Lambda CRUD do dominio de pedidos"
+    Value: !GetAtt PedidoFunction.Arn
+  

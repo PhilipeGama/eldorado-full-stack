@@ -1,0 +1,51 @@
+Rotas apigateway
+7:11
+Method: POST
+ROTA: /pedidoREQUEST BODY
+{
+	ID_CLIENTE: String
+	VALOR_TOTAL: Decimal
+	PRODUTOS: [{
+		ID_PRODUTO: string
+		DESCRICAO: string
+		VALOR: Decimal
+		QUANTIDADE: number
+	}]
+}RESPONSE BODY
+{
+	"StatusCode": 200,
+	"ID_PEDIDO": GUID
+}Method: Get
+Rota: /pedido/{idpedido}
+
+
+
+Method: POST
+ROTA: /pedidoREQUEST BODY
+{
+	ID_CLIENTE: String
+	VALOR_TOTAL: Decimal
+	PRODUTOS: [{
+		ID_PRODUTO: string
+		DESCRICAO: string
+		VALOR: Decimal
+		QUANTIDADE: number
+	}]
+}RESPONSE BODY
+{
+	"StatusCode": 200,
+	"ID_PEDIDO": GUID
+}Method: Get
+Rota: /pedido/{idpedido}ECS Fargate:
+Method: Get
+Rota /estoqueGerar o GUID identificador
+Gravar a mensagem no RDS
+E apagar a mensagem na FILARDS:
+TABELA PRODUTOIDENTIFICARO: Guid
+ID_PRODUTO: string
+DESCRICAO: string
+VALOR: Decimal
+QUANTIDADE: numberDynamoTable: Notafiscal
+ID_NOTA: GUID HASH
+ID_CLIENTE: string
+VALOR_TOTAL: number

@@ -1,0 +1,86 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  InstanceType:
+    Description: 'Tipos de instancias permitidas'
+    Type: String
+    Default: t2.micro
+    AllowedValues: [t2.micro, t2.nano, t2.small]
+    ConstraintDescription: Tipo de instancia invalida'
+
+  KeyName:
+    Description: 'Nome da KeyPair existente'
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: 'KeyPair invalida'
+
+  SSHLocation:
+    Description: 'IP Origem da liberacao do SSH'
+    Type: String
+    MinLength: 9
+    MaxLength: 18
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: 'IP de liberacao invalido'
+  
+  HTTPLocation:
+    Description: 'IP Origem da liberacao do HTTP'
+    Type: String
+    MinLength: 9
+    MaxLength: 18
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: 'IP de liberacao invalido'
+
+Mappings:
+  Regions:
+    sa-east-1:
+      "HVM64": "ami-05855ed85de7fbd77"
+    us-east-1:
+      "HVM64": "ami-02e136e904f3da870"
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref 'InstanceType'
+      SecurityGroups:
+        - !Ref 'InstanceSecurityGroup'
+        - !Ref 'InstanceSecurityGroupHttp'
+      KeyName: !Ref 'KeyName'
+      ImageId: !FindInMap 
+        - Regions
+        - !Ref 'AWS::Region'
+        - HVM64
+  
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Permite acesso via porta 22 - SSH"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref 'SSHLocation'
+    
+  InstanceSecurityGroupHttp:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Permite acesso via porta 80 - HTTP"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: !Ref 'HTTPLocation'
+
+
+Outputs:
+  InstanceId:
+    Description: "ID da instancia criada"
+    Value: !Ref 'EC2Instance'
+  PublicDNS:
+    Description: "DNS publico da instancia criada"
+    Value: !GetAtt [EC2Instance, PublicDnsName] 
+  PublicIP:
+    Description: "IP publico da instancia criada"
+    Value: !GetAtt [EC2Instance, PublicIp] 
+

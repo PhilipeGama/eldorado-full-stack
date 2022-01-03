@@ -1,0 +1,6 @@
+wheel
+Werkzeug
+flask
+coverage
+pytest
+boto3

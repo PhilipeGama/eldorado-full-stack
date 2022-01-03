@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - cd ./src
+  build:
+    commands:
+      - pip install -r requirements.txt -t .
+      - python -m pytest
+artifacts:
+  files:
+    - src/app.py
+    - src/requirements.txt
+    - scripts/**/*
+    - appspec.yml
+    - Dockerfile
+  name: EldoradoBuild
